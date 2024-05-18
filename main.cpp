@@ -1,4 +1,4 @@
-//  g++ main.cpp counting_sort.cpp generate_number.cpp merge_sort.cpp quick_sort.cpp -o sorting_algorithm
+//  g++ main.cpp counting_sort.cpp generate_number.cpp heap_sort.cpp insertion_sort.cpp merge_sort.cpp quick_sort.cpp -o sorting_algorithm
 // ./sorting_algorithm
 
 #include <iostream>
@@ -12,6 +12,8 @@
 #include "generate_number.h"
 #include "merge_sort.h"
 #include "quick_sort.h"
+#include "insertion_sort.h"
+#include "heap_sort.h"
 
 using namespace std;
 
@@ -75,9 +77,11 @@ int main()
             char name_file[50];
             printf("Enter the file name: ");
             scanf("%s", name_file);
+
             int n;
             printf("Enter the number of random numbers: ");
             scanf("%d", &n);
+
             generate_number(name_file, n);
         }
         else if (choice == 1)
@@ -92,12 +96,15 @@ int main()
             int n_iterasi;
             printf("Enter the number of iterations: ");
             scanf("%d", &n_iterasi);
+
             for (int i = 0; i < n_iterasi; i++)
             {
                 vector<int> vec_copy = vec;
+
                 auto start = chrono::high_resolution_clock::now();
-                // insertion_sort(vec_copy);
+                insertion_sort(vec_copy);
                 auto end = chrono::high_resolution_clock::now();
+
                 ms_time.push_back(chrono::duration_cast<chrono::milliseconds>(end - start).count());
                 micro_time.push_back(chrono::duration_cast<chrono::microseconds>(end - start).count());
 
@@ -105,7 +112,9 @@ int main()
                 {
                     vec = vec_copy;
                 }
+
             }
+
             double sum_ms = accumulate(ms_time.begin(), ms_time.end(), 0.0);
             double average_ms = sum_ms / ms_time.size();
             printf("Average time in milliseconds: %f ms\n", average_ms);
@@ -121,6 +130,7 @@ int main()
             printf("Do you want to save the sorted number? (y/n): ");
             char save;
             scanf(" %c", &save);
+
             if (save == 'y')
             {
                 sprintf(name_file, "insertion_sort_%d_numbers.txt", (int)vec.size());
@@ -139,12 +149,15 @@ int main()
             int n_iterasi;
             printf("Enter the number of iterations: ");
             scanf("%d", &n_iterasi);
+
             for (int i = 0; i < n_iterasi; i++)
             {
                 vector<int> vec_copy = vec;
+                
                 auto start = chrono::high_resolution_clock::now();
                 merge_sort(vec_copy, 0, vec_copy.size() - 1);
                 auto end = chrono::high_resolution_clock::now();
+
                 ms_time.push_back(chrono::duration_cast<chrono::milliseconds>(end - start).count());
                 micro_time.push_back(chrono::duration_cast<chrono::microseconds>(end - start).count());
 
@@ -152,7 +165,9 @@ int main()
                 {
                     vec = vec_copy;
                 }
+
             }
+
             double sum_ms = accumulate(ms_time.begin(), ms_time.end(), 0.0);
             double average_ms = sum_ms / ms_time.size();
             printf("Average time in milliseconds: %f ms\n", average_ms);
@@ -168,6 +183,7 @@ int main()
             printf("Do you want to save the sorted number? (y/n): ");
             char save;
             scanf(" %c", &save);
+
             if (save == 'y')
             {
                 sprintf(name_file, "merge_sort_%d_numbers.txt", (int)vec.size());
@@ -186,12 +202,15 @@ int main()
             int n_iterasi;
             printf("Enter the number of iterations: ");
             scanf("%d", &n_iterasi);
+
             for (int i = 0; i < n_iterasi; i++)
             {
                 vector<int> vec_copy = vec;
+
                 auto start = chrono::high_resolution_clock::now();
-                // heap_sort(vec_copy);
+                heap_sort(vec_copy);
                 auto end = chrono::high_resolution_clock::now();
+
                 ms_time.push_back(chrono::duration_cast<chrono::milliseconds>(end - start).count());
                 micro_time.push_back(chrono::duration_cast<chrono::microseconds>(end - start).count());
 
@@ -199,7 +218,9 @@ int main()
                 {
                     vec = vec_copy;
                 }
+
             }
+
             double sum_ms = accumulate(ms_time.begin(), ms_time.end(), 0.0);
             double average_ms = sum_ms / ms_time.size();
             printf("Average time in milliseconds: %f ms\n", average_ms);
@@ -215,6 +236,7 @@ int main()
             printf("Do you want to save the sorted number? (y/n): ");
             char save;
             scanf(" %c", &save);
+
             if (save == 'y')
             {
                 sprintf(name_file, "heap_sort_%d_numbers.txt", (int)vec.size());
@@ -233,12 +255,15 @@ int main()
             int n_iterasi;
             printf("Enter the number of iterations: ");
             scanf("%d", &n_iterasi);
+
             for (int i = 0; i < n_iterasi; i++)
             {
                 vector<int> vec_copy = vec;
+
                 auto start = chrono::high_resolution_clock::now();
                 quick_sort(vec_copy, 0, vec_copy.size() - 1);
                 auto end = chrono::high_resolution_clock::now();
+
                 ms_time.push_back(chrono::duration_cast<chrono::milliseconds>(end - start).count());
                 micro_time.push_back(chrono::duration_cast<chrono::microseconds>(end - start).count());
 
@@ -246,7 +271,9 @@ int main()
                 {
                     vec = vec_copy;
                 }
+
             }
+
             double sum_ms = accumulate(ms_time.begin(), ms_time.end(), 0.0);
             double average_ms = sum_ms / ms_time.size();
             printf("Average time in milliseconds: %f ms\n", average_ms);
@@ -262,11 +289,13 @@ int main()
             printf("Do you want to save the sorted number? (y/n): ");
             char save;
             scanf(" %c", &save);
+
             if (save == 'y')
             {
                 sprintf(name_file, "quick_sort_%d_numbers.txt", (int)vec.size());
                 write_sort_number(vec, name_file);
             }
+
         }
         else if (choice == 5)
         {
@@ -280,12 +309,15 @@ int main()
             int n_iterasi;
             printf("Enter the number of iterations: ");
             scanf("%d", &n_iterasi);
+
             for (int i = 0; i < n_iterasi; i++)
             {
                 vector<int> vec_copy = vec;
+
                 auto start = chrono::high_resolution_clock::now();
                 counting_sort(vec_copy, *max_element(vec_copy.begin(), vec_copy.end()));
                 auto end = chrono::high_resolution_clock::now();
+
                 ms_time.push_back(chrono::duration_cast<chrono::milliseconds>(end - start).count());
                 micro_time.push_back(chrono::duration_cast<chrono::microseconds>(end - start).count());
 
@@ -293,7 +325,9 @@ int main()
                 {
                     vec = vec_copy;
                 }
+
             }
+
             double sum_ms = accumulate(ms_time.begin(), ms_time.end(), 0.0);
             double average_ms = sum_ms / ms_time.size();
             printf("Average time in milliseconds: %f ms\n", average_ms);
@@ -309,11 +343,13 @@ int main()
             printf("Do you want to save the sorted number? (y/n): ");
             char save;
             scanf(" %c", &save);
+
             if (save == 'y')
             {
                 sprintf(name_file, "counting_sort_%d_numbers.txt", (int)vec.size());
                 write_sort_number(vec, name_file);
             }
+
         }
         else if (choice == -1)
         {
