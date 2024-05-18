@@ -1,4 +1,4 @@
-//  g++ main.cpp counting_sort.cpp generate_number.cpp heap_sort.cpp insertion_sort.cpp merge_sort.cpp quick_sort.cpp -o sorting_algorithm
+//  g++ main.cpp counting_sort.cpp generate_number.cpp merge_sort.cpp quick_sort.cpp heap_sort.cpp insertion_sort.cpp -o sorting_algorithm
 // ./sorting_algorithm
 
 #include <iostream>
